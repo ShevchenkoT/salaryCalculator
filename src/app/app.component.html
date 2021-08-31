@@ -1,88 +1,130 @@
-<form class="cart-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <h3>Ordering</h3>
-  <div [ngClass]="{invalid:form.get('email')?.touched && form.get('email')?.invalid}" class="form-control">
-    <label for="email">Email</label>
-    <input id="email" type="Email" formControlName="email" placeholder="Email">
+<div class="content">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div [ngClass]="{invalid:form.get('position')?.touched && form.get('position')?.invalid}" class="form-control">
 
-    <div class="errors" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
-      <small *ngIf="form.get('email')?.errors?.required">
-        Email field cannot be empty
-      </small>
-      <small *ngIf="form.get('email')?.errors?.email">
-        Please enter a valid email address
-      </small>
-    </div>
-  </div>
+      <label for="position">Посада</label>
+      <select id="position" formControlName="position">
+        <option value="packingMachineOperator">Оператор пакувальних апаратів</option>
+        <option value="Courier">Оператор парового тунелю</option>
+        <option value="Mail">Оператор м'ясопідготовки</option>
+        <option value="Mail">Помічник оператора м'ясопідготовки</option>
+        <option value="Mail">Оператор Gravy</option>
+        <option value="Mail">Оператор автоклавів</option>
+        <option value="Mail">Помічник оператора автоклавів</option>
+        <option value="Mail">Оператор Dana</option>
+        <option value="Mail">Оператор Somic</option>
+        <option value="Mail">Вантажник(м'ясопідготовка)</option>
+        <option value="Mail">Укладальник пакувальник</option>
+      </select>
 
-  <div [ngClass]="{invalid:form.get('phoneNumber')?.touched && form.get('phoneNumber')?.invalid}" class="form-control">
-    <label for="phoneNumber">Phone Number</label>
-    <input id="phoneNumber" type="text" formControlName="phoneNumber" inputmode="numeric"
-      placeholder="Like this: 0963332211">
-
-    <div class="errors" *ngIf=" form.get('phoneNumber')?.invalid && form.get('phoneNumber')?.touched">
-      <small *ngIf="form.get('phoneNumber')?.errors?.minlength && !form.get('phoneNumber')?.errors?.isNotInteger">
-        Enter {{form.get('phoneNumber')?.errors?.minlength?.requiredLength}} digits now:
-        {{form.get('phoneNumber')?.errors?.minlength?.actualLength}}
-      </small>
-      <small *ngIf="form.get('phoneNumber')?.errors?.required ">
-        Phone Number field cannot be empty
-      </small>
-      <small *ngIf="form.get('phoneNumber')?.errors?.isNotInteger">
-        Enter only numbers
-      </small>
-    </div>
-  </div>
-
-  <div [ngClass]="{invalid:form.get('fullName')?.touched && form.get('fullName')?.invalid}" class="form-control">
-    <label for="fullName">Full name</label>
-    <input id="fullName" type="text" formControlName='fullName' placeholder="Enter your name">
-
-    <div class="errors" *ngIf="form.get('fullName')?.invalid && form.get('fullName')?.touched">
-      <small>
-        Full name field cannot be empty
-      </small>
-    </div>
-  </div>
-
-  <div [ngClass]="{invalid:form.get('sendingType')?.touched && form.get('sendingType')?.invalid}" class="form-control">
-    <label for="sendingType">Type of sending</label>
-    <select id="sendingType" formControlName="sendingType">
-      <option value="Self-pickup">Self-pickup</option>
-      <option value="Courier">Delivery by courier</option>
-      <option value="Mail">Delivery by mail</option>
-    </select>
-
-    <div class="errors" *ngIf="form.get('sendingType')?.invalid && form.get('sendingType')?.touched">
+      <!-- <div class="errors" *ngIf="form.get('sendingType')?.invalid && form.get('sendingType')?.touched">
       <small>
         Field cannot be empty
       </small>
+    </div> -->
     </div>
-  </div>
 
-  <div [ngClass]="{invalid:form.get('address')?.touched && form.get('address')?.invalid}" class="form-control">
-    <label for="address">Home address</label>
-    <input id="address" type="text" formControlName='address' placeholder="Enter your home address">
-    <button type="button" (click)="getGeolocation()" class="btn blue-btn location-btn"
-      [disabled]="form.get('address')?.value || locationSubmitted">Get
-      Address</button>
 
-    <div class="errors" *ngIf="form.get('address')?.invalid && form.get('address')?.touched">
-      <small>
-        Enter your home address
+
+    <div [ngClass]="{invalid:form.get('mainTime')?.touched && form.get('mainTime')?.invalid}" class="form-control">
+      <label for="mainTime">Відпрацьовано</label>
+      <input id="mainTime" type="text" formControlName="mainTime">
+
+      <!-- <div class="errors" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      <small *ngIf="form.get('email')?.errors?.required">
+        Email field cannot be empty
       </small>
+    </div> -->
     </div>
-  </div>
 
-  <div class="card-fom_buttons">
-    <button class="btn blue-btn" type="submit"
-      [disabled]="form.invalid || submitted || !cartService.cartItem.length">Submit</button>
-    <button (click)="cartService.clearCartList();resetForm()" class="btn red-btn">Clear Cart</button>
-  </div>
+    <div [ngClass]="{invalid:form.get('sundayTime')?.touched && form.get('sundayTime')?.invalid}" class="form-control">
+      <label for="sundayTime">Недільні</label>
+      <input id="sundayTime" type="text" formControlName="sundayTime">
 
-  <div class="errors" *ngIf="!form.invalid && cartService.cartItem.length === 0">
-    <small>
-      Add any product
-    </small>
-  </div>
+      <!-- <div class="errors" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      <small *ngIf="form.get('email')?.errors?.required">
+        Email field cannot be empty
+      </small>
+    </div> -->
+    </div>
 
-</form>
+    <div [ngClass]="{invalid:form.get('nightTime')?.touched && form.get('nightTime')?.invalid}" class="form-control">
+      <label for="nightTime">Нічні</label>
+      <input id="nightTime" type="text" formControlName="nightTime">
+
+      <!-- <div class="errors" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      <small *ngIf="form.get('email')?.errors?.required">
+        Email field cannot be empty
+      </small>
+    </div> -->
+    </div>
+
+    <div [ngClass]="{invalid:form.get('weekendTime')?.touched && form.get('weekendTime')?.invalid}"
+      class="form-control">
+      <label for="weekendTime">Святкові</label>
+      <input id="weekendTime" type="text" formControlName="weekendTime">
+
+      <!-- <div class="errors" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      <small *ngIf="form.get('email')?.errors?.required">
+        Email field cannot be empty
+      </small>
+    </div> -->
+    </div>
+
+    <div [ngClass]="{invalid:form.get('overTime')?.touched && form.get('overTime')?.invalid}" class="form-control">
+      <label for="overTime">Понаднормові</label>
+      <input id="overTime" type="text" formControlName="overTime">
+
+      <!-- <div class="errors" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      <small *ngIf="form.get('email')?.errors?.required">
+        Email field cannot be empty
+      </small>
+    </div> -->
+    </div>
+
+    <div [ngClass]="{invalid:form.get('premium')?.touched && form.get('premium')?.invalid}" class="form-control">
+      <label for="premium">Премія</label>
+      <input id="premium" type="text" formControlName="premium">
+
+      <!-- <div class="errors" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      <small *ngIf="form.get('email')?.errors?.required">
+        Email field cannot be empty
+      </small>
+    </div> -->
+    </div>
+
+    <div [ngClass]="{invalid:form.get('bonus')?.touched && form.get('bonus')?.invalid}" class="form-control">
+      <label for="bonus">Бонус</label>
+      <input id="bonus" type="text" formControlName="bonus">
+
+      <!-- <div class="errors" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      <small *ngIf="form.get('email')?.errors?.required">
+        Email field cannot be empty
+      </small>
+    </div> -->
+    </div>
+
+    <div [ngClass]="{invalid:form.get('advance')?.touched && form.get('advance')?.invalid}" class="form-control">
+      <label for="advance">Аванс</label>
+      <input id="advance" type="text" formControlName="advance">
+
+      <!-- <div class="errors" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+      <small *ngIf="form.get('email')?.errors?.required">
+        Email field cannot be empty
+      </small>
+    </div> -->
+    </div>
+
+
+
+
+
+    <div class="card-fom_buttons">
+      <button class="btn blue-btn" type="submit" [disabled]="form.invalid ">Submit</button>
+
+    </div>
+
+
+
+  </form>
+</div>

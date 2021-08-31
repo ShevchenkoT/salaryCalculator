@@ -1,0 +1,206 @@
+/*Zero style*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  text-decoration: none
+}
+
+// :root {
+//   --first-color: #191919;
+//   --second-color: #272727;
+//   --third-color: #313131;
+//   --text-color: #fff;
+//   --other-text-color: #999999; //#4d4d53;
+//   --primary-color: #dc3545;
+//   --body-color: #000000;
+//   --dark-color: #333333;
+//   --light-color: #f4f4f4;
+//   --success-color: #28a745;
+//   --warning-color: #edf040;
+//   --danger-color: #dc3545;
+
+//   //red button prop bgcolor: hsl(2, 70%, 52%);
+//   --red-button-hue: 2;
+//   //blue button prop bgcolor: hsl(234, 70%, 52%);
+//   --blue-button-hue: 234;
+//   //green button prop bgcolor: hsl(234, 70%, 52%);
+//   --green-button-hue: 108;
+
+//   --button-saturation: 70%;
+//   --button-lightness: 52%;
+// }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: Roboto,
+    "Helvetica Neue",
+    sans-serif;
+  font-size: 15px;
+  line-height: 1.2;
+
+}
+
+
+
+
+
+.content {
+  display: flex;
+  justify-content: center
+}
+
+
+form {
+  width: 300px;
+}
+
+.form-control {
+  display: block;
+  color: var(--other-text-color);
+  margin-bottom: .8rem;
+
+  >label {
+    margin: 1rem 0 0 0;
+    display: block;
+    font-size: 18px;
+  }
+
+  &.invalid {
+    color: #dc3545;
+
+    input {
+      border-bottom: 3px solid #dc3545;
+      //box-shadow: 0px 4px 3px 0px #dc3545;
+      // box-shadow: 0px 0px 4px 1px #dc3545;
+    }
+  }
+
+  .validation {
+    color: var(--primary-color);
+  }
+}
+
+input[type='text'],
+select,
+textarea {
+  &.ng-touched.ng-valid {
+    border-bottom: 3px solid #08f700;
+    //box-shadow: 0px 4px 3px 0px #08f700;
+    //outline: 1px solid #08f700;
+    //box-shadow: 0px 0px 4px 1px #08f700;
+  }
+
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+
+input[type='submit'],
+button {
+  font: inherit;
+}
+
+
+
+
+@media(max-width:1200px) {}
+
+@media(max-width:992px) {}
+
+@media(max-width:767px) {}
