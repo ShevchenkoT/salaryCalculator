@@ -1,0 +1,241 @@
+<div class="top-bar">
+  <h1>Калькулятор зарплати</h1>
+</div>
+<div class="content" id="content">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div [ngClass]="{invalid:form.get('position')?.touched && form.get('position')?.invalid}" class="form-control">
+
+      <label for="position">Посада</label>
+      <select id="position" formControlName="position">
+        <option value="packingMachineOperator">Оператор пакувальних апаратів</option>
+        <option value="steamTunnelOperator">Оператор парового тунелю</option>
+        <option value="assistantSteamTunnelOperator">Помічник оператора парового тунелю</option>
+        <option value="meatPreparationOperator">Оператор м'ясопідготовки</option>
+        <option value="assistantMeatPreparationOperator">Помічник оператора м'ясопідготовки</option>
+        <option value="operatorGravy">Оператор Gravy</option>
+        <option value="autoclaveOperator">Оператор автоклавів</option>
+        <option value="assistantAutoclaveOperator">Помічник оператора автоклавів</option>
+        <option value="operatorDana">Оператор Dana</option>
+        <option value="operatorSomic">Оператор Somic</option>
+        <option value="heaverMeat">Вантажник(м'ясопідготовка)</option>
+        <option value="stackerPacker">Укладальник пакувальник</option>
+      </select>
+
+      <!-- <div class="errors" *ngIf="form.get('sendingType')?.invalid && form.get('sendingType')?.touched">
+      <small>
+        Field cannot be empty
+      </small>
+    </div> -->
+    </div>
+
+
+
+    <div [ngClass]="{invalid:form.get('mainTime')?.touched && form.get('mainTime')?.invalid}" class="form-control">
+      <label for="mainTime">Відпрацьовано</label>
+      <input id="mainTime" type="text" formControlName="mainTime" placeholder="168">
+
+      <div class="errors" *ngIf="form.get('mainTime')?.invalid && form.get('mainTime')?.touched">
+        <small *ngIf="form.get('mainTime')?.errors?.required">
+          Введіть дані
+        </small>
+        <small *ngIf="form.get('mainTime')?.errors?.maxlength">
+          Не коректні дані
+        </small>
+        <small *ngIf="form.get('mainTime')?.errors?.isNotInteger">
+          Введіть тільки цифри
+        </small>
+      </div>
+    </div>
+
+    <div [ngClass]="{invalid:form.get('sundayTime')?.touched && form.get('sundayTime')?.invalid}" class="form-control">
+      <label for="sundayTime">Недільні</label>
+      <input id="sundayTime" type="text" formControlName="sundayTime" placeholder="16">
+
+      <div class="errors" *ngIf="form.get('sundayTime')?.invalid && form.get('sundayTime')?.touched">
+        <small *ngIf="form.get('sundayTime')?.errors?.required">
+          Введіть дані
+        </small>
+        <small *ngIf="form.get('sundayTime')?.errors?.maxlength">
+          Не коректні дані
+        </small>
+        <small *ngIf="form.get('sundayTime')?.errors?.isNotInteger">
+          Введіть тільки цифри
+        </small>
+      </div>
+    </div>
+
+    <div [ngClass]="{invalid:form.get('nightTime')?.touched && form.get('nightTime')?.invalid}" class="form-control">
+      <label for="nightTime">Нічні</label>
+      <input id="nightTime" type="text" formControlName="nightTime" placeholder="64">
+
+      <div class="errors" *ngIf="form.get('nightTime')?.invalid && form.get('nightTime')?.touched">
+        <small *ngIf="form.get('nightTime')?.errors?.required">
+          Введіть дані
+        </small>
+        <small *ngIf="form.get('nightTime')?.errors?.maxlength">
+          Не коректні дані
+        </small>
+        <small *ngIf="form.get('nightTime')?.errors?.isNotInteger">
+          Введіть тільки цифри
+        </small>
+      </div>
+    </div>
+
+    <div [ngClass]="{invalid:form.get('weekendTime')?.touched && form.get('weekendTime')?.invalid}"
+      class="form-control">
+      <label for="weekendTime">Святкові</label>
+      <input id="weekendTime" type="text" formControlName="weekendTime" placeholder="6">
+
+      <div class="errors" *ngIf="form.get('weekendTime')?.invalid && form.get('weekendTime')?.touched">
+        <small *ngIf="form.get('weekendTime')?.errors?.required">
+          Введіть дані
+        </small>
+        <small *ngIf="form.get('weekendTime')?.errors?.maxlength">
+          Не коректні дані
+        </small>
+        <small *ngIf="form.get('weekendTime')?.errors?.isNotInteger">
+          Введіть тільки цифри
+        </small>
+      </div>
+    </div>
+
+    <div [ngClass]="{invalid:form.get('overTime')?.touched && form.get('overTime')?.invalid}" class="form-control">
+      <label for="overTime">Понаднормові</label>
+      <input id="overTime" type="text" formControlName="overTime" placeholder="24">
+
+      <div class="errors" *ngIf="form.get('overTime')?.invalid && form.get('overTime')?.touched">
+        <small *ngIf="form.get('overTime')?.errors?.required">
+          Введіть дані
+        </small>
+        <small *ngIf="form.get('overTime')?.errors?.maxlength">
+          Не коректні дані
+        </small>
+        <small *ngIf="form.get('overTime')?.errors?.isNotInteger">
+          Введіть тільки цифри
+        </small>
+      </div>
+    </div>
+
+    <div [ngClass]="{invalid:form.get('premium')?.touched && form.get('premium')?.invalid}" class="form-control">
+      <label for="premium">Премія</label>
+      <input id="premium" type="text" formControlName="premium" placeholder="30">
+
+      <div class="errors" *ngIf="form.get('premium')?.invalid && form.get('premium')?.touched">
+        <small *ngIf="form.get('premium')?.errors?.required">
+          Введіть дані
+        </small>
+        <small *ngIf="form.get('premium')?.errors?.maxlength">
+          Не коректні дані
+        </small>
+        <small *ngIf="form.get('premium')?.errors?.isNotInteger">
+          Введіть тільки цифри
+        </small>
+      </div>
+    </div>
+
+    <div [ngClass]="{invalid:form.get('bonus')?.touched && form.get('bonus')?.invalid}" class="form-control">
+      <label for="bonus">Бонус</label>
+      <input id="bonus" type="text" formControlName="bonus" placeholder="14.2">
+
+      <div class="errors" *ngIf="form.get('bonus')?.invalid && form.get('bonus')?.touched">
+        <small *ngIf="form.get('bonus')?.errors?.required">
+          Введіть дані
+        </small>
+        <small *ngIf="form.get('bonus')?.errors?.maxlength">
+          Не коректні дані
+        </small>
+        <small *ngIf="form.get('bonus')?.errors?.isNotInteger">
+          Введіть тільки цифри
+        </small>
+      </div>
+    </div>
+
+    <div [ngClass]="{invalid:form.get('advance')?.touched && form.get('advance')?.invalid}" class="form-control">
+      <label for="advance">Аванс</label>
+      <input id="advance" type="text" formControlName="advance" placeholder="4500">
+
+      <div class="errors" *ngIf="form.get('advance')?.invalid && form.get('advance')?.touched">
+        <small *ngIf="form.get('advance')?.errors?.required">
+          Введіть дані
+        </small>
+        <small *ngIf="form.get('advance')?.errors?.maxlength">
+          Не коректні дані
+        </small>
+        <small *ngIf="form.get('advance')?.errors?.isNotInteger">
+          Введіть тільки цифри
+        </small>
+      </div>
+    </div>
+    <button class="btn orange-btn" type="submit" [disabled]="form.invalid ">Порахувати</button>
+    <div class="errors" *ngIf="form.invalid || submitted ">
+      <small style="color:#dc3545;" *ngIf="form.invalid">
+        Заповніть усі поля
+      </small>
+
+    </div>
+
+  </form>
+
+</div>
+<div class="salary" id='salary'>
+  <div *ngIf="newData" class="salary_data">
+
+    <table>
+      <tr>
+        <th>Відпрацьовано: </th>
+        <td>{{newData.mainTime}} г</td>
+      </tr>
+      <tr>
+        <th>Недільні: </th>
+        <td>{{newData.sundayTime}} г</td>
+      </tr>
+      <tr>
+        <th>Нічні: </th>
+        <td>{{newData.nightTime}} г</td>
+      </tr>
+      <tr>
+        <th>Святкові: </th>
+        <td>{{newData.weekendTime}} г</td>
+      </tr>
+      <tr>
+        <th>Понаднормові: </th>
+        <td>{{newData.overTime}} г</td>
+      </tr>
+
+      <tr>
+        <th>Ставка: </th>
+        <td>{{newData.uahPerHour}} Грн</td>
+      </tr>
+      <tr>
+        <th>Середня місячна: </th>
+        <td>{{newData.averageSalary}} Грн</td>
+      </tr>
+      <tr>
+        <th>Премія:: </th>
+        <td>{{newData.premium}} %</td>
+      </tr>
+      <tr>
+        <th>Бонус: </th>
+        <td>{{newData.bonus}} %</td>
+      </tr>
+      <tr>
+        <th>Аванс: </th>
+        <td>{{newData.advance}} Грн</td>
+      </tr>
+
+      <tr>
+        <th>Зарплата: </th>
+        <td>{{newData.salary}} Грн</td>
+      </tr>
+      <tr>
+        <th>Повна зарплата: </th>
+        <td>{{newData.fullSalary}} Грн</td>
+      </tr>
+
+    </table>
+  </div>
+  <div class="buttons">
+    <button class="btn green-btn" (click)="edit()">Редагувати</button>
+    <button class="btn blue-btn" (click)="newEdit()">Новий</button>
+  </div>
+</div>

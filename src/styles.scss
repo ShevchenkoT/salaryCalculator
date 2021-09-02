@@ -1,1 +1,319 @@
-/* You can add global styles to this file, and also import other style files */
+/*Zero style*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  text-decoration: none
+}
+
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: Roboto,
+    "Helvetica Neue",
+    sans-serif;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.top-bar {
+  top: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #00c0f3;
+  z-index: 99;
+  position: relative;
+  margin-bottom: 1rem;
+
+  &>h1 {
+    color: white;
+    font-size: 28px;
+    font-weight: 600;
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  transition: all 1s ease;
+  z-index: 1;
+}
+
+.salary {
+  position: absolute;
+  left: 50%;
+  top: -100%;
+  transform: translate(-50%, 0);
+  z-index: 1;
+  transition: all 1s ease;
+
+  .salary_data {
+    &>table {
+      th {
+        text-align: start;
+      }
+
+      td {
+        text-align: end;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.btn {
+  width: 90px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  transition: all .2s ease;
+  user-select: none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+
+
+  &:disabled {
+    color: #555455;
+    background-color: hsl(300, 2%, 23%);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.orange-btn {
+  background: #e69f44;
+  left: 50%;
+
+  &:hover {
+    background: #d1913c;
+  }
+
+  &:active {
+    background: #c4883a;
+  }
+
+}
+
+.green-btn {
+  background: #97c065;
+
+  &:hover {
+    background: #86aa59;
+  }
+
+  &:active {
+    background: #77974f;
+  }
+
+}
+
+.blue-btn {
+  background: #00c0f3;
+
+  &:hover {
+    background: #00a9d8;
+  }
+
+  &:active {
+    background: #0095be;
+  }
+}
+
+form {
+  width: 285px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-control {
+  display: block;
+  color: var(--other-text-color);
+  margin-bottom: .3rem;
+
+  label,
+  select {
+    display: block;
+    font-size: 16px;
+    width: 280px;
+
+
+  }
+
+  input {
+    &::placeholder {
+      color: rgba(134, 134, 134, 0.26);
+
+    }
+  }
+
+
+
+  &.invalid {
+    color: #dc3545;
+
+    input,
+    select {
+      border-bottom: 3px solid #dc3545;
+    }
+  }
+
+  .validation {
+    color: var(--primary-color);
+  }
+}
+
+input[type='text'],
+select,
+textarea {
+  &.ng-touched.ng-valid {
+    border-bottom: 3px solid #08f700;
+  }
+
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+}
+
+select {
+  font-size: 14px;
+}
+
+input[type='submit'],
+button {
+  font: inherit;
+}
+
+.pageUp {
+  transform: translateY(-110%);
+}
+
+.pageDown {
+  transform: translate(-50%, -50%);
+  top: 50%;
+}
+
+
+@media(max-width:1200px) {}
+
+@media(max-width:992px) {}
+
+@media(max-width:767px) {
+  .top-bar {
+
+    &>h1 {
+
+      font-size: 20px;
+
+    }
+  }
+}
