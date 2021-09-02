@@ -15,6 +15,8 @@ export interface mainData {
   advance: number,
   uahPerHour: number,
   averageSalary: number,
+  position: string,
+  date: Date,
   salary?: number,
   fullSalary?: number
 }
@@ -123,6 +125,8 @@ export class MainComponent implements OnInit {
       advance: +this.form.value.advance,
       uahPerHour: this.getUahPerHour(this.form.value.position),
       averageSalary: this.getAverageSalary(this.form.value.position),
+      position: this.form.value.position,
+      date: new Date()
     }
     this.newData.fullSalary = +this.calculateSalary(this.newData).toFixed(2)
     this.newData.salary = +(this.newData.fullSalary - this.newData.advance).toFixed(2)
@@ -131,6 +135,7 @@ export class MainComponent implements OnInit {
     this.pushData.setSalary(this.newData).subscribe(() => {
       this.submitted = false
     })
+    console.log(this.newData);
 
   }
 
