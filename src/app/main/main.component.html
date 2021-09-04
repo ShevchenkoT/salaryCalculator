@@ -1,3 +1,13 @@
+<div class="warning" id="warning">
+  <div class="warning_content">
+    <h2>ДИСКЛЕЙМЕР</h2>
+    <p>Сайт не являється офіційним калькулятором зарплати, та є лише продуктом для "приблизного" підрахунку зарплати, ми
+      не
+      несемо відповідальність за неправильність даних, або різницю між результатом та офіційною зарплатою,  просимо
+      врахувати це і користуватись калькулятором лише в ознайомлювальних цілях. </p>
+    <button (click)="closeWarning()">Закрити</button>
+  </div>
+</div>
 <div class="content" id="content">
   <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div [ngClass]="{invalid:form.get('position')?.touched && form.get('position')?.invalid}" class="form-control">
