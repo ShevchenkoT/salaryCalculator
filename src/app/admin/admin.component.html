@@ -1,0 +1,18 @@
+<div class="warning" id="login">
+  <div class="warning_login">
+    <input type="password" [(ngModel)]="currentPassword">
+    <button (click)="login()">Увійти</button>
+  </div>
+</div>
+
+<div class="content">
+  <h2>Admin</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="calibrate">
+      <input id="calibrate-input" type="text" formControlName="calibrate" placeholder="1.0077">
+      <button type="button" (click)="unlockInput()">Розблокувати</button>
+      <button type="submit">Зберегти зміни</button>
+    </div>
+  </form>
+
+</div>

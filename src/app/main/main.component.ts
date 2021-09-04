@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AdminDataService } from '../shared/adminData.service';
 import { MyValidators } from '../shared/my.validators';
 import { PushSalaryService } from '../shared/pushSalary.service';
 
@@ -33,66 +34,8 @@ export class MainComponent implements OnInit {
 
   contentDiv!: any
   salaryDiv!: any
-
-  rateAndAverage: any = {
-    ownData: {
-      uahPerHour: null,
-      averageSalary: null
-    },
-    packingMachineOperator: {
-      uahPerHour: 56.2,
-      averageSalary: 14500
-    },
-    steamTunnelOperator: {
-      uahPerHour: 50.1,
-      averageSalary: 12924
-    },
-    assistantSteamTunnelOperator: {
-      uahPerHour: 36.4,
-      averageSalary: 9500
-    },
-    meatPreparationOperator: {
-      uahPerHour: 50.1,
-      averageSalary: 12924
-    },
-    assistantMeatPreparationOperator: {
-      uahPerHour: 34.2,
-      averageSalary: 8812
-    },
-    operatorGravy: {
-      uahPerHour: 43,
-      averageSalary: 11082
-    },
-    autoclaveOperator: {
-      uahPerHour: 42.6,
-      averageSalary: 11000
-    },
-    assistantAutoclaveOperator: {
-      uahPerHour: 34.20,
-      averageSalary: 8812
-    },
-    operatorDana: {
-      uahPerHour: 48.6,
-      averageSalary: 12533
-    },
-    operatorSomic: {
-      uahPerHour: 48.6,
-      averageSalary: 12533
-    },
-    heaverMeat: {
-      uahPerHour: 30.1,
-      averageSalary: 7771
-    },
-    stackerPacker: {
-      uahPerHour: 30.1,
-      averageSalary: 7771
-    },
-
-  }
-  calibrateSalary = 1.0077
-
   submitted = false
-  constructor(private pushData: PushSalaryService,) { }
+  constructor(private pushData: PushSalaryService, private adminData: AdminDataService) { }
   ngOnInit() {
     this.form = new FormGroup({
       position: new FormControl("ownData", [Validators.required]),
@@ -111,10 +54,8 @@ export class MainComponent implements OnInit {
     this.salaryDiv = document.querySelector('#salary')
   }
 
-  checkVersion(): void {
-    console.log('version:1.3');
 
-  }
+
   onSubmit(): void {
     if (this.form.invalid) {
       return
@@ -149,15 +90,10 @@ export class MainComponent implements OnInit {
 
   }
 
-  getUahPerHour(position: string): number {
-    return position ? this.rateAndAverage[position].uahPerHour : 0
-  }
-  getAverageSalary(position: string): number {
-    return position ? this.rateAndAverage[position].averageSalary : 0
-  }
+
   calculateSalary(data: mainData): number {
     const salaryWithoutTax = data.uahPerHour * (data.mainTime + data.sundayTime * 0.5 + data.nightTime * 0.75 + data.weekendTime + data.overTime) +
-      0.01 * (data.averageSalary * this.calibrateSalary) * (data.premium + data.bonus)
+      0.01 * (data.averageSalary * this.adminData.calibrateSalary) * (data.premium + data.bonus)
     const tax = salaryWithoutTax * 0.195
     return salaryWithoutTax - tax
   }
@@ -172,7 +108,12 @@ export class MainComponent implements OnInit {
   }
 
   changeData(event: any) {
-    this.form.patchValue({ averageSalary: this.getAverageSalary(event) })
-    this.form.patchValue({ uahPerHour: this.getUahPerHour(event) })
+    this.form.patchValue({ averageSalary: this.adminData.getAverageSalary(event) })
+    this.form.patchValue({ uahPerHour: this.adminData.getUahPerHour(event) })
+  }
+
+  closeWarning() {
+    const warning = document.querySelector('#warning')
+    warning?.remove()
   }
 }

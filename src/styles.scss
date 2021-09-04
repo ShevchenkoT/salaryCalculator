@@ -306,6 +306,59 @@ button {
   top: 50%;
 }
 
+.warning {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .warning_content,
+  .warning_login {
+    max-width: 280px;
+    text-align: center;
+    color: #dc3545;
+    font-weight: 500;
+
+    &>h2 {
+      font-size: 22px;
+    }
+
+    &>p {
+      margin: 1rem 0;
+    }
+
+    &>button {
+      background-color: #dc354600;
+      font-size: 24px;
+      color: #252525;
+
+      &:hover {
+        color: #646464;
+      }
+
+      &:active {
+        color: #7c7c7c;
+      }
+    }
+
+    &>input[type='password'] {
+
+      display: block;
+      width: 100%;
+      padding: 0.4rem;
+      font-size: 1.1rem;
+      border: 1px solid #ccc;
+    }
+
+  }
+}
+
+
 
 @media(max-width:1200px) {}
 

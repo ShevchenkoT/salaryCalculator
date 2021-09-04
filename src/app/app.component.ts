@@ -7,4 +7,9 @@ import { Component, } from '@angular/core';
 })
 export class AppComponent {
 
+
+  checkVersion(): void {
+    console.log('version:1.5');
+  }
+
 }
