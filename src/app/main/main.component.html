@@ -1,6 +1,3 @@
-<div class="top-bar">
-  <h1 (click)="checkVersion()">Калькулятор зарплати</h1>
-</div>
 <div class="content" id="content">
   <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div [ngClass]="{invalid:form.get('position')?.touched && form.get('position')?.invalid}" class="form-control">

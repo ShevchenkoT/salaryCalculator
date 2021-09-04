@@ -111,10 +111,7 @@ export class MainComponent implements OnInit {
     this.salaryDiv = document.querySelector('#salary')
   }
 
-  checkVersion(): void {
-    console.log('version:1.2');
 
-  }
   onSubmit(): void {
     if (this.form.invalid) {
       return
