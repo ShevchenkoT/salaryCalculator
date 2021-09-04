@@ -112,7 +112,7 @@ export class MainComponent implements OnInit {
   }
 
   checkVersion(): void {
-    console.log('version:1.2');
+    console.log('version:1.3');
 
   }
   onSubmit(): void {
