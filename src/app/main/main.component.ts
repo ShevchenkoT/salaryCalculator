@@ -28,8 +28,6 @@ export interface mainData {
 })
 export class MainComponent implements OnInit {
   deviceInfo!: any;
-  //salary = 0
-  //fullSalary = 0
   newData!: mainData
   form!: FormGroup
 
@@ -37,6 +35,10 @@ export class MainComponent implements OnInit {
   salaryDiv!: any
 
   rateAndAverage: any = {
+    ownData: {
+      uahPerHour: null,
+      averageSalary: null
+    },
     packingMachineOperator: {
       uahPerHour: 56.2,
       averageSalary: 14500
@@ -70,12 +72,12 @@ export class MainComponent implements OnInit {
       averageSalary: 8812
     },
     operatorDana: {
-      uahPerHour: 47,
-      averageSalary: 12123
+      uahPerHour: 48.6,
+      averageSalary: 12533
     },
     operatorSomic: {
-      uahPerHour: 47,
-      averageSalary: 12123
+      uahPerHour: 48.6,
+      averageSalary: 12533
     },
     heaverMeat: {
       uahPerHour: 30.1,
@@ -87,27 +89,32 @@ export class MainComponent implements OnInit {
     },
 
   }
-  calibrateSalary = 111.8
+  calibrateSalary = 1.0077
 
   submitted = false
   constructor(private pushData: PushSalaryService,) { }
   ngOnInit() {
     this.form = new FormGroup({
-      position: new FormControl(null, [Validators.required]),
+      position: new FormControl("ownData", [Validators.required]),
       mainTime: new FormControl(null, [Validators.required, Validators.maxLength(3), MyValidators.ifInt]),
       sundayTime: new FormControl(null, [Validators.required, Validators.maxLength(3), MyValidators.ifInt]),
       nightTime: new FormControl(null, [Validators.required, Validators.maxLength(3), MyValidators.ifInt]),
       weekendTime: new FormControl(null, [Validators.required, Validators.maxLength(3), MyValidators.ifInt]),
       overTime: new FormControl(null, [Validators.required, Validators.maxLength(3), MyValidators.ifInt]),
-
+      uahPerHour: new FormControl(null, [Validators.required, Validators.maxLength(5), MyValidators.ifIntCommaPoint]),
+      averageSalary: new FormControl(null, [Validators.required, Validators.maxLength(5), MyValidators.ifInt]),
       premium: new FormControl(null, [Validators.required, Validators.maxLength(4), MyValidators.ifIntCommaPoint]),
-      bonus: new FormControl(null, [Validators.required, Validators.maxLength(4), MyValidators.ifIntCommaPoint]),
+      bonus: new FormControl(null, [Validators.required, Validators.maxLength(5), MyValidators.ifIntCommaPoint]),
       advance: new FormControl(null, [Validators.required, Validators.maxLength(5), MyValidators.ifInt]),
     })
     this.contentDiv = document.querySelector('#content')
     this.salaryDiv = document.querySelector('#salary')
   }
 
+  checkVersion(): void {
+    console.log('version:1.2');
+
+  }
   onSubmit(): void {
     if (this.form.invalid) {
       return
@@ -123,8 +130,8 @@ export class MainComponent implements OnInit {
       premium: parseFloat(this.form.value.premium.replace(/[^\d\.\-]/g, ".")),
       bonus: parseFloat(this.form.value.bonus.replace(/[^\d\.\-]/g, ".")),
       advance: +this.form.value.advance,
-      uahPerHour: this.getUahPerHour(this.form.value.position),
-      averageSalary: this.getAverageSalary(this.form.value.position),
+      uahPerHour: +this.form.value.uahPerHour,
+      averageSalary: +this.form.value.averageSalary,
       position: this.form.value.position,
       date: new Date()
     }
@@ -134,9 +141,10 @@ export class MainComponent implements OnInit {
     this.contentDiv.classList.add('pageUp')
     this.pushData.setSalary(this.newData).subscribe(() => {
       this.submitted = false
+      console.log('Done');
+    }, () => {
+      console.log('Error');
     })
-    console.log(this.newData);
-
   }
 
   getUahPerHour(position: string): number {
@@ -147,7 +155,7 @@ export class MainComponent implements OnInit {
   }
   calculateSalary(data: mainData): number {
     const salaryWithoutTax = data.uahPerHour * (data.mainTime + data.sundayTime * 0.5 + data.nightTime * 0.75 + data.weekendTime + data.overTime) +
-      0.01 * (data.averageSalary + this.calibrateSalary) * (data.premium + data.bonus)
+      0.01 * (data.averageSalary * this.calibrateSalary) * (data.premium + data.bonus)
     const tax = salaryWithoutTax * 0.195
     return salaryWithoutTax - tax
   }
@@ -161,4 +169,8 @@ export class MainComponent implements OnInit {
     this.contentDiv.classList.remove('pageUp')
   }
 
+  changeData(event: any) {
+    this.form.patchValue({ averageSalary: this.getAverageSalary(event) })
+    this.form.patchValue({ uahPerHour: this.getUahPerHour(event) })
+  }
 }

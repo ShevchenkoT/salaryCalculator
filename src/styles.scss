@@ -148,6 +148,8 @@ body {
 
   .salary_data {
     &>table {
+      width: 260px;
+
       th {
         text-align: start;
       }
@@ -159,6 +161,7 @@ body {
   }
 
   .buttons {
+    margin-top: .5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -166,7 +169,7 @@ body {
 }
 
 .btn {
-  width: 90px;
+  width: 100px;
   height: 30px;
   border: 1px solid black;
   border-radius: 4px;
@@ -231,6 +234,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .form-control {

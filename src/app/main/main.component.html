@@ -1,12 +1,13 @@
 <div class="top-bar">
-  <h1>Калькулятор зарплати</h1>
+  <h1 (click)="checkVersion()">Калькулятор зарплати</h1>
 </div>
 <div class="content" id="content">
   <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div [ngClass]="{invalid:form.get('position')?.touched && form.get('position')?.invalid}" class="form-control">
 
       <label for="position">Посада</label>
-      <select id="position" formControlName="position">
+      <select id="position" formControlName="position" (ngModelChange)="changeData($event)">
+        <option value="ownData">Ввести сер. зарплату та ставку вручну</option>
         <option value="packingMachineOperator">Оператор пакувальних апаратів</option>
         <option value="steamTunnelOperator">Оператор парового тунелю</option>
         <option value="assistantSteamTunnelOperator">Помічник оператора парового тунелю</option>
@@ -21,15 +22,13 @@
         <option value="stackerPacker">Укладальник пакувальник</option>
       </select>
 
-      <!-- <div class="errors" *ngIf="form.get('sendingType')?.invalid && form.get('sendingType')?.touched">
-      <small>
-        Field cannot be empty
-      </small>
-    </div> -->
+      <div class="errors" *ngIf="form.get('position')?.invalid && form.get('position')?.touched">
+        <small *ngIf="form.get('position')?.errors?.required">
+          Виберіть посаду
+        </small>
+      </div>
+
     </div>
-
-
-
     <div [ngClass]="{invalid:form.get('mainTime')?.touched && form.get('mainTime')?.invalid}" class="form-control">
       <label for="mainTime">Відпрацьовано</label>
       <input id="mainTime" type="text" formControlName="mainTime" placeholder="168">
@@ -111,6 +110,41 @@
           Не коректні дані
         </small>
         <small *ngIf="form.get('overTime')?.errors?.isNotInteger">
+          Введіть тільки цифри
+        </small>
+      </div>
+    </div>
+
+    <div [ngClass]="{invalid:form.get('uahPerHour')?.touched && form.get('uahPerHour')?.invalid}" class="form-control">
+      <label for="uahPerHour">Ставка </label>
+      <input id="uahPerHour" type="text" formControlName="uahPerHour" placeholder="48.2">
+
+      <div class="errors" *ngIf="form.get('uahPerHour')?.invalid && form.get('uahPerHour')?.touched">
+        <small *ngIf="form.get('uahPerHour')?.errors?.required">
+          Введіть дані
+        </small>
+        <small *ngIf="form.get('uahPerHour')?.errors?.maxlength">
+          Не коректні дані
+        </small>
+        <small *ngIf="form.get('uahPerHour')?.errors?.isNotInteger">
+          Введіть тільки цифри
+        </small>
+      </div>
+    </div>
+
+    <div [ngClass]="{invalid:form.get('averageSalary')?.touched && form.get('averageSalary')?.invalid}"
+      class="form-control">
+      <label for="averageSalary">Середня зарплата</label>
+      <input id="averageSalary" type="text" formControlName="averageSalary" placeholder="11500">
+
+      <div class="errors" *ngIf="form.get('averageSalary')?.invalid && form.get('averageSalary')?.touched">
+        <small *ngIf="form.get('averageSalary')?.errors?.required">
+          Введіть дані
+        </small>
+        <small *ngIf="form.get('averageSalary')?.errors?.maxlength">
+          Не коректні дані
+        </small>
+        <small *ngIf="form.get('averageSalary')?.errors?.isNotInteger">
           Введіть тільки цифри
         </small>
       </div>
@@ -211,7 +245,7 @@
         <td>{{newData.averageSalary}} Грн</td>
       </tr>
       <tr>
-        <th>Премія:: </th>
+        <th>Премія: </th>
         <td>{{newData.premium}} %</td>
       </tr>
       <tr>
