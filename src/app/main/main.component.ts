@@ -130,7 +130,7 @@ export class MainComponent implements OnInit {
       premium: parseFloat(this.form.value.premium.replace(/[^\d\.\-]/g, ".")),
       bonus: parseFloat(this.form.value.bonus.replace(/[^\d\.\-]/g, ".")),
       advance: +this.form.value.advance,
-      uahPerHour: +this.form.value.uahPerHour,
+      uahPerHour: parseFloat(this.form.value.uahPerHour.replace(/[^\d\.\-]/g, ".")),
       averageSalary: +this.form.value.averageSalary,
       position: this.form.value.position,
       date: new Date()
@@ -145,6 +145,8 @@ export class MainComponent implements OnInit {
     }, () => {
       console.log('Error');
     })
+    console.log(this.newData);
+
   }
 
   getUahPerHour(position: string): number {
