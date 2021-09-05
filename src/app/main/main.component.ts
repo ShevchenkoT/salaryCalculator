@@ -86,8 +86,6 @@ export class MainComponent implements OnInit {
     }, () => {
       console.log('Error');
     })
-    console.log(this.newData);
-
   }
 
 
