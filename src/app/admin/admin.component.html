@@ -15,4 +15,46 @@
     </div>
   </form>
 
+  <div class="salaries">
+    <table style="width:100%">
+      <tr>
+        <th>Н</th>
+        <th>Посада</th>
+        <th>Усі</th>
+        <th>Недільні</th>
+        <th>Нічні</th>
+        <th>Вихідні</th>
+        <th>Понаднормові</th>
+
+        <th>Премія</th>
+        <th>Бонус</th>
+        <th>Аванс</th>
+        <th>За годину</th>
+        <th>Середня</th>
+        <th>Зарплата</th>
+        <th>Повна</th>
+        <th>Дата</th>
+      </tr>
+      <tr *ngFor="let s of allSalary | sortByDate; let idx = index">
+        <td>{{allSalary.length - idx }}</td>
+        <td>{{s.position}}</td>
+        <td>{{s.mainTime}}</td>
+        <td>{{s.sundayTime}}</td>
+        <td>{{s.nightTime}}</td>
+        <td>{{s.weekendTime}}</td>
+        <td>{{s.overTime}}</td>
+
+        <td>{{s.premium}}</td>
+        <td>{{s.bonus}}</td>
+        <td>{{s.advance}}</td>
+        <td>{{s.uahPerHour}}</td>
+        <td>{{s.averageSalary}}</td>
+        <td>{{s.salary}}</td>
+        <td>{{s.fullSalary}}</td>
+        <td>{{s.date | date:'short'}}</td>
+        <button (click)="removeData(s.id)">&times;</button>
+      </tr>
+    </table>
+
+  </div>
 </div>

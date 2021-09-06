@@ -1,26 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminDataService } from '../shared/adminData.service';
+import { mainData } from '../shared/interfaces';
 import { MyValidators } from '../shared/my.validators';
-import { PushSalaryService } from '../shared/pushSalary.service';
+import { TodoService } from '../shared/todo.service';
 
-export interface mainData {
-  mainTime: number,
-  sundayTime: number,
-  nightTime: number,
-  weekendTime: number,
-  overTime: number,
 
-  premium: number,
-  bonus: number,
-  advance: number,
-  uahPerHour: number,
-  averageSalary: number,
-  position: string,
-  date: Date,
-  salary?: number,
-  fullSalary?: number
-}
 
 @Component({
   selector: 'app-main',
@@ -35,7 +20,7 @@ export class MainComponent implements OnInit {
   contentDiv!: any
   salaryDiv!: any
   submitted = false
-  constructor(private pushData: PushSalaryService, private adminData: AdminDataService) { }
+  constructor(private todoService: TodoService, private adminData: AdminDataService) { }
   ngOnInit() {
     this.form = new FormGroup({
       position: new FormControl("ownData", [Validators.required]),
@@ -52,8 +37,19 @@ export class MainComponent implements OnInit {
     })
     this.contentDiv = document.querySelector('#content')
     this.salaryDiv = document.querySelector('#salary')
-  }
 
+    this.todoService.getCalibrateSalary().subscribe((data) => {
+      if (data) {
+        this.adminData.setCalibrateSalary(data["calibrateSalary"])
+      }
+    })
+    this.todoService.getRateAndAverage().subscribe((data) => {
+      if (data) {
+        this.adminData.setRateAndAverage(data)
+      }
+    })
+
+  }
 
   onSubmit(): void {
     if (this.form.invalid) {
@@ -79,7 +75,7 @@ export class MainComponent implements OnInit {
     this.newData.salary = +(this.newData.fullSalary - this.newData.advance).toFixed(2)
     this.salaryDiv.classList.add('pageDown')
     this.contentDiv.classList.add('pageUp')
-    this.pushData.setSalary(this.newData).subscribe(() => {
+    this.todoService.setSalary(this.newData).subscribe(() => {
       this.submitted = false
       console.log('Done');
     }, () => {

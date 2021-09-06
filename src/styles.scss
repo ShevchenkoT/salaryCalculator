@@ -358,6 +358,28 @@ button {
   }
 }
 
+.salaries {
+  //width: 1000px;
+  height: 400px;
+  border: 1px solid rgb(68, 68, 68);
+  overflow: auto;
+
+  &>table {
+    background-color: rgb(214, 214, 214);
+
+    td {
+      border: 1px solid rgb(68, 68, 68);
+    }
+
+    button {
+      width: 15px;
+      height: 15px;
+      background-color: #dc3545;
+    }
+  }
+
+}
+
 
 
 @media(max-width:1200px) {}

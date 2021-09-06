@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { AdminComponent } from './admin/admin.component';
 import { RouterModule, Routes } from '@angular/router';
+import { SortByDatePipe } from './shared/sort-by-date.pipe';
 const routes: Routes = [
   { path: '', component: MainComponent, },
   { path: 'admin', component: AdminComponent, }
@@ -15,7 +16,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     MainComponent,
-    AdminComponent
+    AdminComponent,
+    SortByDatePipe
   ],
   imports: [
     BrowserModule,
