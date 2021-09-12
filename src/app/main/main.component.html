@@ -207,8 +207,8 @@
         </small>
       </div>
     </div>
-    <button class="btn orange-btn" type="submit" [disabled]="form.invalid ">Порахувати</button>
-    <div class="errors" *ngIf="form.invalid || submitted ">
+    <button class="btn orange-btn" type="submit" [disabled]="form.invalid || submitted">Порахувати</button>
+    <div class="errors" *ngIf="form.invalid  ">
       <small style="color:#dc3545;" *ngIf="form.invalid">
         Заповніть усі поля
       </small>

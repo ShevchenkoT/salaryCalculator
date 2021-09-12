@@ -22,6 +22,9 @@ export class TodoService {
   getRateAndAverage(): Observable<any> {
     return this.http.get(`${environment.rbDbUrl}/rateAndAverage.json`)
   }
+  updateRateAndAverage(data: any) {
+    return this.http.patch(`${environment.rbDbUrl}/rateAndAverage.json`, data)
+  }
 
   setCalibrateSalary(data: any): Observable<any> {
     console.log(data);
@@ -46,4 +49,6 @@ export class TodoService {
   removeSalary(id: any): Observable<any> {
     return this.http.delete(`${environment.rbDbUrl}/salary/${id}.json`)
   }
+
+
 }

@@ -10,8 +10,45 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="calibrate">
       <input id="calibrate-input" type="text" formControlName="calibrate" placeholder="1.0077">
-      <button type="button" (click)="unlockInput()">Розблокувати</button>
-      <button type="submit">Зберегти зміни</button>
+      <button class="small-btn" type="button" (click)="unlockInput()">Розблокувати</button>
+      <button class="small-btn" type="submit">Зберегти зміни</button>
+    </div>
+    <div class="message" *ngIf="calibrateValueIsChanged">
+      <p>{{calibrateValueIsChanged}}</p>
+    </div>
+  </form>
+
+  <form [formGroup]="rateAndAverageForm" class="form-rate-average" *ngIf="rateAndAverage" (ngSubmit)="saveChanges()">
+
+
+    <div class="form-array-control">
+      <div class="control-rate">
+        <p>Ставка</p>
+        <div [ngClass]="{invalid:getRateSalary()[idx].touched && getRateSalary()[idx].invalid}" class="form_average"
+          formGroupName="rateSalary" *ngFor="let c of getRateSalary(); let idx = index">
+          <label>{{getAllPosition()[idx]}}:</label>
+          <input list="characteristic" type="text" [formControlName]="idx">
+
+        </div>
+      </div>
+
+      <div class="control-average">
+        <p>Сер. зарплата</p>
+        <div [ngClass]="{invalid:getAverageSalary()[idx].touched && getAverageSalary()[idx].invalid}" class="form_rate"
+          formGroupName="averageSalary" *ngFor="let c of getAverageSalary(); let idx = index">
+
+          <input type="text" [formControlName]="idx ">
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn" [disabled]="rateAndAverageForm.invalid || submitted">Зберегти зміни</button>
+    <div class="errors " *ngIf="arrayFormValid()">
+      <small *ngIf="arrayFormErrors()">
+        Заповніть усі поля(дані мають бути числами)
+      </small>
+    </div>
+    <div class="message" *ngIf="rateAndAverageIsChanged">
+      <p>{{rateAndAverageIsChanged}}</p>
     </div>
   </form>
 

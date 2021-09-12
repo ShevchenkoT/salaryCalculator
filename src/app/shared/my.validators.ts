@@ -5,6 +5,7 @@ export class MyValidators {
     if (control.value) {
       return /\D/.test(control.value) ? { isNotInteger: true } : null as any;
     }
+
     return null as any;
   }
 
@@ -14,6 +15,14 @@ export class MyValidators {
     }
     return null as any;
   }
+
+  static ifFloat(control: FormControl): { [key: string]: boolean } {
+    if (control.value) {
+      return !/^[0-9]{1,2}([.][0-9]{1,2})?$/.test(control.value) ? { isNotInteger: true } : null as any;
+    }
+    return null as any;
+  }
+
 }
 
 
